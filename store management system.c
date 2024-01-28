@@ -11,7 +11,6 @@ struct Product {
     struct Product* next;
 };
 
-// Function to add a product to the linked list
 void addProduct(struct Product** head, int productId, const char* name, double price, int quantity) {
     struct Product* newProduct = (struct Product*)malloc(sizeof(struct Product));
     if (newProduct == NULL) {
@@ -25,11 +24,9 @@ void addProduct(struct Product** head, int productId, const char* name, double p
     newProduct->quantity = quantity;
     newProduct->next = NULL;
 
-    // If the list is empty, make the new product the head
     if (*head == NULL) {
         *head = newProduct;
     } else {
-        // Otherwise, add the new product to the end of the list
         struct Product* current = *head;
         while (current->next != NULL) {
             current = current->next;
@@ -40,7 +37,6 @@ void addProduct(struct Product** head, int productId, const char* name, double p
     printf("Product added successfully.\n");
 }
 
-// Function to display all products in the linked list
 void displayProducts(struct Product* head) {
     if (head == NULL) {
         printf("No products to display.\n");
@@ -56,7 +52,6 @@ void displayProducts(struct Product* head) {
     }
 }
 
-// Function to search for a product by name in the linked list
 void searchProduct(struct Product* head, const char* searchName) {
     if (head == NULL) {
         printf("No products to search.\n");
@@ -81,7 +76,6 @@ void searchProduct(struct Product* head, const char* searchName) {
     }
 }
 
-// Function to search for a product by ID in the linked list
 struct Product* searchProductById(struct Product* head, int productId) {
     struct Product* current = head;
     while (current != NULL) {
@@ -93,7 +87,6 @@ struct Product* searchProductById(struct Product* head, int productId) {
     return NULL;
 }
 
-// Function to update product information by ID
 void updateProduct(struct Product* head, int updateId) {
     struct Product* current = head;
     while (current != NULL) {
@@ -113,7 +106,6 @@ void updateProduct(struct Product* head, int updateId) {
     printf("Product with ID %d not found.\n", updateId);
 }
 
-// Function to delete a product by ID
 void deleteProduct(struct Product** head, int productId) {
     struct Product* current = *head;
     struct Product* prev = NULL;
@@ -121,7 +113,6 @@ void deleteProduct(struct Product** head, int productId) {
     while (current != NULL) {
         if (current->productId == productId) {
             if (prev == NULL) {
-                // If the product to be deleted is the first in the list
                 *head = current->next;
             } else {
                 prev->next = current->next;
@@ -138,7 +129,6 @@ void deleteProduct(struct Product** head, int productId) {
     printf("Product with ID %d not found.\n", productId);
 }
 
-// Function to free the allocated memory for the linked list
 void freeList(struct Product* head) {
     while (head != NULL) {
         struct Product* temp = head;
@@ -227,8 +217,6 @@ int main() {
                 printf("Invalid choice. Please enter a valid option.\n");
         }
     } while (choice != 7);
-
-    // Free allocated memory before exiting
     freeList(store);
 
     return 0;
